@@ -1,16 +1,21 @@
 {
-  "name": "use-changesets-in-root",
-  "version": "1.0.3",
+  "name": "gitflow-changesets",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "changeset": "changeset",
     "changeset:version": "changeset version",
+    "changeset:tag": "changeset tag",
     "changeset:publish": "changeset publish"
   },
   "private": true,
   "devDependencies": {
     "@changesets/changelog-github": "0.4.8",
-    "@changesets/cli": "2.26.2"
+    "@changesets/cli": "2.26.2",
+    "@commitlint/cli": "18.2.0",
+    "@commitlint/config-conventional": "18.1.0",
+    "@commitlint/cz-commitlint": "18.2.0",
+    "commitizen": "4.3.0"
   }
 }
