@@ -3,7 +3,7 @@ name: Changesets publish
 on:
   push:
     branches:
-      - main
+      - release
   workflow_dispatch:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
