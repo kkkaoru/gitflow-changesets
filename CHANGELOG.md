@@ -1,5 +1,11 @@
 # gitflow-changesets
 
+## 1.0.8
+
+### Patch Changes
+
+- auto incrementing patch version by release
+
 ## 1.0.7
 
 ### Patch Changes
