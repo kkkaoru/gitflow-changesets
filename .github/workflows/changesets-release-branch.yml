@@ -42,3 +42,8 @@ jobs:
           pnpm run changeset:tag
           git push
           git push --tags
+      - name: Create a pull pull-request
+        run : |
+          gh pr create --fill --base develop --head release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
