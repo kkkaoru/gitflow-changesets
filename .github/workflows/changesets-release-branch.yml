@@ -44,6 +44,8 @@ jobs:
           git push --tags
       - name: Create a pull pull-request
         run : |
-          gh pr create --fill --base develop --head release
+          gh pr create --base develop --head release --title $TITLE --body $BODY
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TITLE: "Update version"
+          BODY: "This pull request created by a GitHub Action"
