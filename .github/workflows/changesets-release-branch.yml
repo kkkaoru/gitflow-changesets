@@ -43,7 +43,7 @@ jobs:
           git push
           git push --tags
       - name: Merge to develop from release
-        run:
+        run: |
           git checkout develop
           git merge --no-ff release
           git push
