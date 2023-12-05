@@ -38,7 +38,7 @@ jobs:
         run : |
           cp -f auto-changeset-template.md .changeset
           pnpm run changeset:version
-          pnpm run changeset:tag
           git add . && git commit -m "chore: auto increment patch version"
+          pnpm run changeset:tag
           git push
           git push --tags
