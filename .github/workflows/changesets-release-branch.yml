@@ -1,4 +1,4 @@
-name: Changesets publish
+name: Auto increment patch version
 
 on:
   push:
@@ -40,4 +40,4 @@ jobs:
           pnpm run changeset:version
           pnpm run changeset:tag
           git add . && git commit -m "chore: auto increment patch version"
-          git push
+          git push --tags
