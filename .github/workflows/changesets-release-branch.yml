@@ -21,8 +21,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup git config
         run: |
-          git config --global user.email "ockacru+git@gmail.com"
-          git config --global user.name "changesets-bot"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
@@ -34,10 +34,10 @@ jobs:
           cache: 'pnpm'
       - name: Install
         run: pnpm install --frozen-lockfile
-      - name: Create publish pull request or publish to npm
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          publish: pnpm run changeset:publish
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create a version
+        run : |
+          pnpm run changeset:changeset:auto-path-increment
+          pnpm run changeset:version
+          pnpm run changeset:tag
+          git add . && git commit -m "chore: auto increment patch version"
+          git push
