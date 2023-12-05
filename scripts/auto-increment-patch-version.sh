@@ -1,0 +1,9 @@
+#!/bin/bash
+
+SCRIPT_DIR=$(cd $(dirname $0); pwd)
+
+TEMPLATE_MD_FILE_NAME='auto-changeset-template.md'
+TEMPLATE_MD_FILE_PATH="$SCRIPT_DIR/../$TEMPLATE_MD_FILE_NAME"
+CHANGESET_DIR="$SCRIPT_DIR/../.changeset"
+
+cp $TEMPLATE_MD_FILE_PATH $CHANGESET_DIR
