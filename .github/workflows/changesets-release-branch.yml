@@ -36,7 +36,7 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Create a version
         run : |
-          pnpm run changeset:changeset:auto-path-increment
+          pnpm run changeset:auto-path-increment
           pnpm run changeset:version
           pnpm run changeset:tag
           git add . && git commit -m "chore: auto increment patch version"
