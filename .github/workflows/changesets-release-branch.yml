@@ -42,11 +42,6 @@ jobs:
           pnpm run changeset:tag
           git push
           git push --tags
-      - name: Merge to develop from release
-        run: |
-          git checkout develop
-          git merge --no-ff release
-          git push
       # - name: Create a pull pull-request
       #   run : |
       #     gh pr create --base develop --head release --title "$TITLE" --body "$BODY"
@@ -54,3 +49,15 @@ jobs:
       #     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       #     TITLE: "chore: update version by changeset"
       #     BODY: This pull request auto created by a GitHub Action
+  merge:
+    name: Push to develop
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout develop
+        uses: actions/checkout@v4
+        with:
+          ref: develop
+      - name: Merge
+        run: |
+          git merge --no-ff release
+          git push
