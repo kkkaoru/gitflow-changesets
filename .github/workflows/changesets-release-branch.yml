@@ -42,29 +42,12 @@ jobs:
           pnpm run changeset:tag
           git push
           git push --tags
-      - name: Merge develop
-        uses: devmasx/merge-branch@master
-        with:
-          type: now
-          from_branch: release
-          target_branch: develop
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-      # - name: Create a pull pull-request
-      #   run : |
-      #     gh pr create --base develop --head release --title "$TITLE" --body "$BODY"
-      #   env:
-      #     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     TITLE: "chore: update version by changeset"
-      #     BODY: This pull request auto created by a GitHub Action
-  # merge:
-  #   name: Push to develop
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout develop
-  #       uses: actions/checkout@v4
-  #       with:
-  #         ref: develop
-  #     - name: Merge
-  #       run: |
-  #         git merge --no-ff release
-  #         git push
+      - name: Create a pull pull-request
+        run : |
+          gh pr create --base develop --head release --title "$TITLE" --body "$BODY"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TITLE: "chore: update version by changeset"
+          BODY: |
+            release -> develop へ変更を取り込みます。
+            このPull Request は、 Create a merge commit で merge してください。
