@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "changeset": "changeset",
+    "changeset:auto-path-increment": "node -e \"require('fs').copyFileSync('auto-changeset-template.md', '.changeset/auto-changeset-template.md')\"",
     "changeset:version": "changeset version",
     "changeset:tag": "changeset tag",
-    "changeset:publish": "changeset publish"
+    "changeset:publish": "changeset publish",
+    "commit:auto-path-increment": "git add . && git commit -m \"chore: auto increment patch version\""
   },
   "private": true,
   "devDependencies": {
