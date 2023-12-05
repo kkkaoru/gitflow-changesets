@@ -13,8 +13,8 @@ permissions:
   packages: write
   pull-requests: write
 jobs:
-  publish:
-    name: Publish
+  auto-increment:
+    name: Increment
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -36,8 +36,10 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Create a version
         run : |
+          cp -f auto-changeset-template.md .changeset
           pnpm run changeset:auto-path-increment
           pnpm run changeset:version
           pnpm run changeset:tag
           git add . && git commit -m "chore: auto increment patch version"
+          git push
           git push --tags
