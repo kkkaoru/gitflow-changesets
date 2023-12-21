@@ -1,5 +1,11 @@
 ## [1.0.16](https://github.com/kkkaoru/gitflow-changesets/compare/v1.0.15...v1.0.16) (2023-12-19)
 
+## 1.0.18
+
+### Patch Changes
+
+- auto incrementing patch version by release
+
 ## 1.0.17
 
 ### Patch Changes
