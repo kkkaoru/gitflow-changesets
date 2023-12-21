@@ -1,0 +1,36 @@
+name: Release
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - release
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Generate diff text
+        id: generate_diff
+        env:
+          BRANCH: ${{ matrix.branch }}
+          VERSION: ${{ steps.get_version.outputs.VERSION }}
+        run: |
+          diff=$(git --no-pager log --pretty=format:"- %s %d %aE %ai" origin/main..origin/release --no-merges | sed -r 's/[0-9]*\+(.*)@users.noreply.github.com/@\1/g')
+          escaped_diff="${diff//$'\n'/\\n}"
+          echo "DIFF_TEXT=$escaped_diff" >> $GITHUB_OUTPUT
+      - name: Create a pull pull-request
+        run : |
+          gh pr create --base main --head release --title "$TITLE" --body "$BODY"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TITLE: "chore: release to main"
+          BODY: |
+            `${{ steps.generate_diff.outputs.DIFF_TEXT }}`
