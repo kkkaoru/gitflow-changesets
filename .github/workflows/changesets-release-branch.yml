@@ -51,3 +51,6 @@ jobs:
           BODY: |
             release -> develop へ変更を取り込みます。
             このPull Request は、 Create a merge commit で merge してください。
+      - name: If failure
+        run: echo "Exists pull request"
+        if: ${{ failure() }}
